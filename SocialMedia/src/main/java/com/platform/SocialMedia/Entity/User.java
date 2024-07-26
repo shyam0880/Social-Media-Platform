@@ -34,12 +34,12 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "user_following",
-            joinColumns = @JoinColumn(name = "follower_id"),
-            inverseJoinColumns = @JoinColumn(name = "followee_id")
+            name = "user_followers",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "follower_id")
     )
-    private List<User> following;
-
-    @ManyToMany(mappedBy = "following")
     private List<User> followers;
+
+    @ManyToMany(mappedBy = "followers")
+    private List<User> following;
 }

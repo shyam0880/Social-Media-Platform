@@ -1,27 +1,43 @@
 package com.platform.SocialMedia.Services;
 
 import com.platform.SocialMedia.Entity.User;
+import com.platform.SocialMedia.Repository.PostRepository;
+import com.platform.SocialMedia.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImplementation implements UserService{
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
+
+
     @Override
     public User registerUser(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
     public User getUserById(Long id) {
-        return null;
+        return userRepository.findById(id).orElseThrow(RuntimeException::new);
+        //return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
-    public void followUser(Long id, User follower) {
-
+    public void followUser(Long userId, User follower) {
+        User user = getUserById(userId); // Retrieve the User object
+        user.getFollowers().add(follower); // Add the follower to the list
+        userRepository.save(user); // Save the updated User object
     }
 }
