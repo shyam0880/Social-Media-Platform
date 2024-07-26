@@ -29,12 +29,17 @@ public class User {
     private String bio;
     private Data date;
 
-    @OneToMany(mappedBy = "User")
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Post> posts;
 
     @ManyToMany
+    @JoinTable(
+            name = "user_following",
+            joinColumns = @JoinColumn(name = "follower_id"),
+            inverseJoinColumns = @JoinColumn(name = "followee_id")
+    )
     private List<User> following;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "following")
     private List<User> followers;
 }
