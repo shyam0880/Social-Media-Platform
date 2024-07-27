@@ -13,7 +13,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-//http://localhost:8080/api/users/register
+
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user){
         User registeredUser = userService.registerUser(user);
@@ -26,7 +26,8 @@ public class UserController {
         String password = user.getPassword();
 
         if (userService.validateUser(email, password)) {
-            return ResponseEntity.status(200).body("Invalid credentials");
+            return ResponseEntity.ok("Login successful");
+            //return ResponseEntity.status(200).body("Invalid credentials");
 
         } else {
             return ResponseEntity.status(401).body("Invalid credentials");

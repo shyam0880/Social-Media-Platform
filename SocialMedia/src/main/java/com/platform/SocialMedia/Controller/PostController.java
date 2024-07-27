@@ -15,7 +15,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @PostMapping
+    @PostMapping("/createpost")
     public ResponseEntity<Post> createPost(@RequestBody Post post){
         Post createdPost = postService.createPost(post);
         return ResponseEntity.ok(createdPost);
@@ -27,7 +27,7 @@ public class PostController {
         return ResponseEntity.ok(post);
     }
 
-    @GetMapping
+    @GetMapping("/getallpost")
     public ResponseEntity<Object> getAllPosts() {
         List<Post> posts = postService.getAllPosts();
         return ResponseEntity.ok(posts);
