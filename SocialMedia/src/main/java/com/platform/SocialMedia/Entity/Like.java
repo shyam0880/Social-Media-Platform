@@ -5,11 +5,10 @@ import lombok.*;
 
 @Getter
 @Setter
-@Table(name = "likes")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "likes")
 public class Like {
 
     @Id
@@ -17,10 +16,10 @@ public class Like {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="post_id",nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 }

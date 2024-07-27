@@ -5,11 +5,10 @@ import lombok.*;
 
 @Getter
 @Setter
-@Table(name = "follows")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "follows")
 public class Follow {
 
     @Id
@@ -17,10 +16,10 @@ public class Follow {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="follower_id",nullable = false)
+    @JoinColumn(name = "follower_id", nullable = false)
     private User follower;
 
     @ManyToOne
-    @JoinColumn(name = "followee_id", nullable = false)
-    private User followee;
+    @JoinColumn(name = "follow_id", nullable = false)
+    private User follow;
 }

@@ -2,20 +2,22 @@ package com.platform.SocialMedia.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.*;
+
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
-@Table(name = "users")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false,unique = true)
+
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -27,9 +29,11 @@ public class User {
     private String gender;
     private String profileURL;
     private String bio;
-    private Data date;
 
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts;
 
     @ManyToMany

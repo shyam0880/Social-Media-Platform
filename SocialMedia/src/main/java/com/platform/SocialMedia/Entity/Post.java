@@ -3,15 +3,15 @@ package com.platform.SocialMedia.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-@Table(name = "posts")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +21,15 @@ public class Post {
     private String content;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Data createDate;
+    private Date createDate;
 
     @ManyToOne
-    @JoinColumn(name ="author_id",nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
-    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likes;
-
 }
-

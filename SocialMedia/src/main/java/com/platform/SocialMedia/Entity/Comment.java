@@ -3,13 +3,14 @@ package com.platform.SocialMedia.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Getter
 @Setter
-@Table(name = "comments")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "comments")
 public class Comment {
 
     @Id
@@ -20,13 +21,13 @@ public class Comment {
     private String content;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Data createDate;
+    private Date createDate;
 
     @ManyToOne
-    @JoinColumn(name="author_id",nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
     @ManyToOne
-    @JoinColumn(name="post_id",nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 }

@@ -40,4 +40,11 @@ public class UserServiceImplementation implements UserService{
         user.getFollowers().add(follower); // Add the follower to the list
         userRepository.save(user); // Save the updated User object
     }
+
+    @Override
+    public boolean validateUser(String email, String password) {
+        User user = userRepository.findByEmail(email);
+        String db_password= user.getPassword();
+        return password.equals(db_password);
+    }
 }

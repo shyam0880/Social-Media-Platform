@@ -13,12 +13,26 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
-    @PostMapping("/regisdter")
+//http://localhost:8080/api/users/register
+    @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user){
         User registeredUser = userService.registerUser(user);
         return ResponseEntity.ok(registeredUser);
     }
+
+    @PostMapping("/validate")
+    public ResponseEntity<?> validateUser(@RequestBody User user) {
+        String email = user.getEmail();
+        String password = user.getPassword();
+
+        if (userService.validateUser(email, password)) {
+            return ResponseEntity.status(200).body("Invalid credentials");
+
+        } else {
+            return ResponseEntity.status(401).body("Invalid credentials");
+        }
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
