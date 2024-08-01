@@ -16,12 +16,12 @@
     color: #333;
   }
   
-  .post-list {
+  .post {
     list-style: none;
     padding: 0;
   }
   
-  .post-item {
+  .post {
     background-color: #fff;
     padding: 15px;
     border-radius: 5px;
@@ -29,13 +29,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .post-item p {
+  .post p {
     font-size: 1rem;
     margin: 0;
     color: #333;
   }
   
-  .post-item small {
+  .post small {
     display: block;
     margin-top: 10px;
     font-size: 0.875rem;
@@ -49,3 +49,39 @@
     color: #666;
   }
   
+  
+.post .buttons {
+  margin-top: 15px;
+}
+
+.post button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.post button:hover {
+  background-color: #0056b3;
+}
+
+.post button.comment {
+  background-color: #28a745;
+}
+
+.post button.comment:hover {
+  background-color: #218838;
+}
+
+.post button.share {
+  background-color: #ffc107;
+}
+
+.post button.share:hover {
+  background-color: #e0a800;
+}
