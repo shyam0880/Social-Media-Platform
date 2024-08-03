@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
-    id: '',
     email: '',
     password: '',
     firstName: '',
@@ -28,8 +29,10 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/users/register', user);
-      console.log(response.data);
+      alert(response.data.firstName+' is register successcuffy')
+      //window.location.reload();
       // Handle registration success (e.g., redirect to login)
+      navigate('/login')
     } catch (error) {
       alert('Registration failed', error);
     }
@@ -37,15 +40,6 @@ const Register = () => {
 
   return (
     <form onSubmit={handleRegister}>
-      <div>
-        <label>ID</label>
-        <input
-          type="number"
-          name="id"
-          value={user.id}
-          onChange={handleChange}
-        />
-      </div>
       <div>
         <label>Email</label>
         <input

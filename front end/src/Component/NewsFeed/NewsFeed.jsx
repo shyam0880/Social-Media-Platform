@@ -16,7 +16,7 @@ const NewsFeed = () => {
       try {
           //const response = await axios.get(`http://localhost:8080/api/user/${user.id}`);
           const response = await axios.get(`http://localhost:8080/api/post/getallpost`);
-          console.log(response.data); // Log the response data
+          console.log(response.data.id) // Log the response data
           setPosts(response.data);
         setLoading(false);
       } catch (error) {
@@ -46,8 +46,8 @@ const NewsFeed = () => {
         
         <ul className="post-list">
           {posts.map(post => (
-            <li key={post[0]} className="post">
-              <p>Posted by {post.id}</p>
+            <li key={post.id} className="post">
+              <p>Posted by {post.author.firstName}</p>
               <small>Posted on: {new Date(post.createDate).toLocaleString()}</small>
               <p>{post.content}</p>
               <div className="buttons">

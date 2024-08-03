@@ -15,4 +15,6 @@ public interface UserService {
     void followUser(Long userId, User follower);
 
     boolean validateUser(String email, String password);
+
+    User findByEmail(String email);
 }

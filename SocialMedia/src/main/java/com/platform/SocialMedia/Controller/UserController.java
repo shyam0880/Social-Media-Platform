@@ -26,7 +26,7 @@ public class UserController {
         String password = user.getPassword();
 
         if (userService.validateUser(email, password)) {
-            return ResponseEntity.ok("Login successful");
+            return ResponseEntity.ok(userService.findByEmail(email));
             //return ResponseEntity.status(200).body("Invalid credentials");
 
         } else {
@@ -47,10 +47,5 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping("/{id}/follow")
-    public ResponseEntity<Void> followUser(@PathVariable Long id, @RequestBody User follower) {
-        userService.followUser(id, follower);
-        return ResponseEntity.ok().build();
-    }
 
 }

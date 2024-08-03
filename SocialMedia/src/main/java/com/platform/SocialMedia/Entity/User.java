@@ -33,8 +33,8 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts;
+//    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Post> posts;
 
     @ManyToMany
     @JoinTable(

@@ -1,34 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
+//import React, { useState, useEffect } from 'react';
+//import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
+import { UserContext } from '../../UserContext';
 
 const Profile = () => {
-  const { userId } = useParams();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+  console.log("data"+user);
+  //const { userId } = useParams();
+  //const [user, setUser] = useState(null);
+  //const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(`/api/users/${userId}`);
-        setUser(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching the user profile", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const response = await axios.get(`/api/users/${userId}`);
+  //       setUser(response.data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching the user profile", error);
+  //     }
+  //   };
 
-    fetchUser();
-  }, [userId]);
+  //   fetchUser();
+  // }, [userId]);
 
-  if (loading) {
-    return <div>Loading...</div>;
+  if (!user) {
+    // Redirect to login page if not logged in
+    navigate('/login');
+    return null;
   }
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
 
   return (
     <div>
-      <h1>{user.username}'s Profile</h1>
-      <img src={user.avatar} alt={`${user.username}'s avatar`} />
+      <h1>{user.firstName} {user.lastName}'s Profile</h1>
+      <img src={user.profileURL} alt={`${user.firstName}'s avatar`} />
       <p>{user.bio}</p>
       {/* Add more profile details as needed */}
     </div>

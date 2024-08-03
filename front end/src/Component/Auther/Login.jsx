@@ -5,7 +5,7 @@ import { UserContext } from '../../UserContext';
 import './logincss.css';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useContext(UserContext);
@@ -13,7 +13,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/users/validate', { email: username, password });
+      const response = await axios.post('http://localhost:8080/api/users/validate', { email, password });
       login(response.data);
       
       // Check response status
@@ -37,8 +37,8 @@ const Login = () => {
         <label>Username (Email)</label>
         <input
           type="email"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div>

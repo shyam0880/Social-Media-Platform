@@ -2,6 +2,7 @@ package com.platform.SocialMedia.Controller;
 
 import com.platform.SocialMedia.Entity.Post;
 import com.platform.SocialMedia.Services.PostService;
+import com.platform.SocialMedia.dto.PostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,29 +22,16 @@ public class PostController {
         return ResponseEntity.ok(createdPost);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
-        Post post = postService.getPostById(id);
-        return ResponseEntity.ok(post);
-    }
-
     @GetMapping("/getallpost")
     public ResponseEntity<Object> getAllPosts() {
         List<Post> posts = postService.getAllPosts();
         return ResponseEntity.ok(posts);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<Object> getPostsByUser(@PathVariable Long userId) {
-        List<Post> posts = postService.getPostsByUser(userId);
+    @GetMapping("/findallpost")
+    public ResponseEntity<List<PostDTO>> findAllPosts() {
+        List<PostDTO> posts = postService.findAllPosts();
         return ResponseEntity.ok(posts);
     }
-
-    @GetMapping("/newsfeed/{userId}")
-    public ResponseEntity<Object> getNewsfeed(@PathVariable Long userId) {
-        List<Post> posts = postService.getNewsfeed(userId);
-        return ResponseEntity.ok(posts);
-    }
-
 
 }
