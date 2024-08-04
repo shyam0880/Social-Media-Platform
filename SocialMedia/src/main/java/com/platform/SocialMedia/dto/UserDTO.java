@@ -1,5 +1,6 @@
 package com.platform.SocialMedia.dto;
 
+import com.platform.SocialMedia.Entity.Post;
 import lombok.*;
 
 import java.util.Date;
@@ -17,7 +18,7 @@ public class UserDTO {
     private String profileURL;
     private String bio;
     private Date date;
-//    private List<Post> posts;
-//    private List<UserDTO> followers;
-//    private List<UserDTO> following;
+    private List<Post> posts;
+    private List<UserDTO> followers;
+    private List<UserDTO> following;
 }
