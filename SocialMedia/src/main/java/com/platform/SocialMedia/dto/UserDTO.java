@@ -6,8 +6,11 @@ import lombok.*;
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-
 public class UserDTO {
     private Long id;
     private String email;
@@ -18,7 +21,8 @@ public class UserDTO {
     private String profileURL;
     private String bio;
     private Date date;
-    private List<Post> posts;
-    private List<UserDTO> followers;
-    private List<UserDTO> following;
+//    private List<Post> posts;
+//    private List<UserDTO> followers;
+//    private List<UserDTO> following;
+    private List<Long> postsId;
 }
