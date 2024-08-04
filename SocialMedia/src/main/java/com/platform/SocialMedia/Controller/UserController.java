@@ -2,6 +2,7 @@ package com.platform.SocialMedia.Controller;
 
 import com.platform.SocialMedia.Entity.User;
 import com.platform.SocialMedia.Services.UserService;
+import com.platform.SocialMedia.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,8 @@ public class UserController {
         String password = user.getPassword();
 
         if (userService.validateUser(email, password)) {
-            return ResponseEntity.ok(userService.findByEmail(email));
+            UserDTO users = userService.findsByEmail(email);
+            return ResponseEntity.ok(users);
             //return ResponseEntity.status(200).body("Invalid credentials");
 
         } else {
@@ -35,9 +37,15 @@ public class UserController {
     }
 
 
+//    @GetMapping("/{id}")
+//    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+//        User user = userService.getUserById(id);
+//        return ResponseEntity.ok(user);
+//    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        UserDTO user = userService.getUsersById(id);
         return ResponseEntity.ok(user);
     }
 

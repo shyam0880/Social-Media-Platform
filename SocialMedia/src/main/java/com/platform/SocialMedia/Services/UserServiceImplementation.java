@@ -3,6 +3,7 @@ package com.platform.SocialMedia.Services;
 import com.platform.SocialMedia.Entity.User;
 import com.platform.SocialMedia.Repository.PostRepository;
 import com.platform.SocialMedia.Repository.UserRepository;
+import com.platform.SocialMedia.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,14 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
+    public UserDTO getUsersById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(RuntimeException::new);
+        return convertToTDO(user);
+        //return userRepository.findById(id).orElseThrow(RuntimeException::new);
+        //return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -51,5 +60,26 @@ public class UserServiceImplementation implements UserService{
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+    @Override
+    public UserDTO findsByEmail(String email) {
+        User user =  userRepository.findByEmail(email);
+        return convertToTDO(user);
+    }
+
+
+    private UserDTO convertToTDO(User user){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        userDTO.setRole(user.getRole());
+        userDTO.setGender(user.getGender());
+        userDTO.setProfileURL(user.getProfileURL());
+        userDTO.setBio(user.getBio());
+        userDTO.setDate(user.getDate());
+        //userDTO.setPostsId(user.getPosts());
+        return userDTO;
     }
 }

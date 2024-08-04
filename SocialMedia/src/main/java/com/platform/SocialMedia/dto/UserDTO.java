@@ -24,5 +24,5 @@ public class UserDTO {
 //    private List<Post> posts;
 //    private List<UserDTO> followers;
 //    private List<UserDTO> following;
-    private List<Long> postsId;
+    //private List<Post> postsId;
 }
