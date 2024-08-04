@@ -4,7 +4,7 @@ import com.platform.SocialMedia.Entity.User;
 import lombok.*;
 
 import java.util.Date;
-//import java.util.List;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,6 +17,6 @@ public class PostDTO {
     private Date createDate;
     private Long authorId;
     private String fullName;
-//    private List<Long> commentIds;
-//    private List<Long> likeIds;
+    private List<Long> commentIds;
+    private List<Long> likeIds;
 }
