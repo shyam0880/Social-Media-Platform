@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
@@ -121,6 +121,7 @@ const Register = () => {
         />
       </div>
       <button type="submit">Register</button>
+      <label>Existing user : </label>  <Link to="/login">Login</Link>
     </form>
   );
 };

@@ -15,16 +15,19 @@ function App() {
     <UserProvider>
       <Router>
         <div className="App">
-          <Navigation />
-
-          <Routes>
-          <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/create-post" element={<CreatePost />} />
-            {/* <Route path="/posts" element={<PostList />} /> */}
-            <Route path="/" element={<NewsFeed />} />
-          </Routes>
+          <div className='nav'>
+            <Navigation />
+          </div>
+          <div className='container'>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/create-post" element={<CreatePost />} />
+              {/* <Route path="/posts" element={<PostList />} /> */}
+              <Route path="/" element={<NewsFeed />} />
+            </Routes>
+          </div>
         </div>
       </Router>
     </UserProvider>

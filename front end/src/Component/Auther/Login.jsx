@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import './logincss.css';
 
@@ -48,6 +48,8 @@ const Login = () => {
         />
       </div>
       <button type="submit">Login</button>
+      <br/>
+      <label>New user : </label>  <Link to="/register">Register</Link>
     </form>
   );
 };
