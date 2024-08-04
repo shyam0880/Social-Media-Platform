@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImplementation implements UserService{
@@ -30,6 +31,7 @@ public class UserServiceImplementation implements UserService{
         //return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
+
     @Override
     public UserDTO getUsersById(Long id) {
         User user = userRepository.findById(id).orElseThrow(RuntimeException::new);
@@ -41,6 +43,12 @@ public class UserServiceImplementation implements UserService{
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<UserDTO> findAllUsers() {
+        List<User> user = userRepository.findAll();
+        return user.stream().map(this::convertToTDO).collect(Collectors.toList());
     }
 
     @Override

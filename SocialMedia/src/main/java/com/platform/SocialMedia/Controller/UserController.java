@@ -55,6 +55,12 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/findAllUsers")
+    public ResponseEntity<Object> findAllUsers() {
+        List<UserDTO> users = userService.findAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
     @PostMapping("/{id}/follow")
     public ResponseEntity<Void> followUser(@PathVariable Long id, @RequestBody User follower) {
         userService.followUser(id, follower);
