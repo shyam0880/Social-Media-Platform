@@ -18,10 +18,8 @@ const Login = () => {
       
       // Check response status
       if (response.status === 200) {
-        console.log(response.data); // Optionally log the success message
         navigate('/profile'); // Navigate to newsFeed if login is successful
       } else {
-        console.error('Login failed: ', response.data);
         alert('Login failed: ' + response.data); // Display error message
       }
 

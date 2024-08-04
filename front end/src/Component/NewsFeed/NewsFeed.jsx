@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import './NewsFeed.css';
-//import { UserContext } from '../../UserContext';
+import { UserContext } from '../../UserContext';
 
 
 const NewsFeed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); // Added state for error handling
+  const { user } = useContext(UserContext);
   //const user = 2; // This should be dynamically set based on the logged-in user
-  //const user;
+  
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -28,6 +30,11 @@ const NewsFeed = () => {
 
     fetchPosts();
   }, []);
+
+
+  if (!user) {
+    return <div>Login First...</div>;
+ }
 
   if (loading) {
     return <div>Loading...</div>;

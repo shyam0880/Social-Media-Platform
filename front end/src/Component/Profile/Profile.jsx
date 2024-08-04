@@ -42,7 +42,11 @@ const Profile = () => {
     <div>
       <h1>{user.firstName} {user.lastName}'s Profile</h1>
       <img src={user.profileURL} alt={`${user.firstName}'s avatar`} />
-      <p>{user.bio}</p>
+      <p>Email : {user.email}</p>
+      <p>Gender : {user.gender}</p>
+      <p>Role : {user.role}</p>
+      <p>About me: {user.bio}</p>
+      <p>Date of birth : {user.date}</p>
       {/* Add more profile details as needed */}
     </div>
   );

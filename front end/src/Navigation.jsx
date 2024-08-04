@@ -1,7 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React,{useContext} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../src/UserContext';
 
 function Navigation() {
+  const { logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const Logout = () => {
+    logout();
+    navigate('/'); // Redirect to the homepage or login page
+  };
+
   return (
     <nav>
       <ul>
@@ -22,6 +31,9 @@ function Navigation() {
         </li>
         <li>
           <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/" onClick={Logout}>LogOut</Link>
         </li>
       </ul>
     </nav>
