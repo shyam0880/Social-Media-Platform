@@ -54,7 +54,7 @@ public class PostServiceImplementation implements PostService{
 
     @Override
     public List<PostDTO> findAllPosts() {
-        List<Post> posts = postRepository.findAll();
+        List<Post> posts = postRepository.findAllByOrderByCreateDateDesc();
         return posts.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 

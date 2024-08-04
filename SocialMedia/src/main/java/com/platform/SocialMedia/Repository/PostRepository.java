@@ -10,6 +10,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findByAuthor(User author);
     List<Post> findByAuthorIn(List<User> authors);
+    List<Post> findAllByOrderByCreateDateDesc(); //used to extract based on create date
 
 
 }
