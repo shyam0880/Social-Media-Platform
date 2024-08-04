@@ -15,7 +15,8 @@ public class PostDTO {
     private Long id;
     private String content;
     private Date createDate;
-    private User author;
+    private Long authorId;
+    private String fullName;
 //    private List<Long> commentIds;
 //    private List<Long> likeIds;
 }

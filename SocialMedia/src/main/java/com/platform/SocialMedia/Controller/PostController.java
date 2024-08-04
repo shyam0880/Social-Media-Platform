@@ -22,16 +22,38 @@ public class PostController {
         return ResponseEntity.ok(createdPost);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+        Post post = postService.getPostById(id);
+        return ResponseEntity.ok(post);
+    }
+
+
+    //this give all the table along with other table connected with foreign key
     @GetMapping("/getallpost")
     public ResponseEntity<Object> getAllPosts() {
         List<Post> posts = postService.getAllPosts();
         return ResponseEntity.ok(posts);
     }
 
+    //lets make table that only give table data
     @GetMapping("/findallpost")
     public ResponseEntity<List<PostDTO>> findAllPosts() {
         List<PostDTO> posts = postService.findAllPosts();
         return ResponseEntity.ok(posts);
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Object> getPostsByUser(@PathVariable Long userId) {
+        List<Post> posts = postService.getPostsByUser(userId);
+        return ResponseEntity.ok(posts);
+    }
+
+    @GetMapping("/newsfeed/{userId}")
+    public ResponseEntity<Object> getNewsfeed(@PathVariable Long userId) {
+        List<Post> posts = postService.getNewsfeed(userId);
+        return ResponseEntity.ok(posts);
+    }
+
 
 }

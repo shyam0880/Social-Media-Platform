@@ -1,6 +1,7 @@
 package com.platform.SocialMedia.Services;
 
 import com.platform.SocialMedia.Entity.User;
+import com.platform.SocialMedia.Repository.PostRepository;
 import com.platform.SocialMedia.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ public class UserServiceImplementation implements UserService{
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private PostRepository postRepository;
+    @Autowired
+    private PostRepository postRepository;
 
 
     @Override

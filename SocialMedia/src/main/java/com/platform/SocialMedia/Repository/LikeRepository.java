@@ -1,15 +1,13 @@
 package com.platform.SocialMedia.Repository;
 
+import com.platform.SocialMedia.Entity.Like;
 import com.platform.SocialMedia.Entity.Post;
 import com.platform.SocialMedia.Entity.User;
-import com.platform.SocialMedia.dto.PostDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findByAuthor(User author);
-    List<Post> findByAuthorIn(List<User> authors);
-
-
+public interface LikeRepository extends JpaRepository<Like, Long> {
+    List<Like> findByPost(Post post);
+    List<Like> findByUser(User user);
 }
