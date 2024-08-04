@@ -1,10 +1,10 @@
 # Social-Media-Platform
-
+<pre>
 ##Backend Structure
     src/main/java/com/platform/SocialMedia
     ├── Confiuration
     |    └── WebConfig        //It help to connect React and SpringBoot
-    ├── Controller
+    ├── Controller 
     │   ├── CommentController.java
     │   ├── PostController.java
     │   └── UserController.java
@@ -30,3 +30,4 @@
     │   ├── UserService.java
     │   └── UserServiceImpl.java
     └── SocialMediaApplication.java
+</pre>
