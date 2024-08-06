@@ -16,17 +16,39 @@ const Profile = () => {
   return (
     <div className='profile'>
       <div className='profilebox'>
-        <div className='profileimg'>
-          <img src={user.profileURL} typeof='img' alt={`${user.firstName}'s avatar`} />
+        <div className='imgprofile'>
+          <div className='profileimg'>
+            <img src={user.profileURL} typeof='img' alt={`${user.firstName}'s avatar`} />
+          </div>
+          <div className='profilename'>
+            <h1>{user.firstName} {user.lastName}</h1>
+            <p className='bio'>{user.bio}</p>
+          </div>
         </div>
         <div className='profilebody'>
-          <h1>{user.firstName} {user.lastName}</h1>
-          <p className='bio'>{user.bio}</p>
-          <br/>
-          <p>Email : {user.email}</p>
-          <p>Gender : {user.gender}</p>
-          <p>Role : {user.role}</p>
-          <p>Date of birth : {user.date}</p>
+          <div className='profiledetail'>
+            <div>
+              <div className='detail'>
+                <label>Email</label>
+                <p>{user.email}</p>
+              </div>
+              <div className='detail'>
+                <label>Gender</label>
+                <p>{user.gender}</p>
+              </div>
+            </div>
+            <br/>
+            <div>
+              <div className='detail'>
+                <label>Role</label>
+                <p>{user.role}</p>
+              </div>
+              <div className='detail'>
+                <label>Date of birth</label>
+                <p>{user.date}</p>
+              </div>
+            </div>
+          </div>
           <div className='profileshow'>
             <div className='forpost'>
               <label>Post's</label>

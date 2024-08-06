@@ -6,6 +6,7 @@
     background-size: cover;
     align-items: center;
     justify-content: center;
+
 }
 
 .profilebox{
@@ -13,12 +14,13 @@
     padding: 20px;
     border-radius: 10px;
     display: flex;
-    width: auto;
+    width: 50rem;
+    height: 20rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .profileimg{
     padding: 20px;
-    border: 1px solid black;
     border-radius: 10px;
     width: auto;
     height: auto;
@@ -27,31 +29,49 @@
 .profileimg img{
     width: 200px;
     height: 200px;
-    border-radius: 10px;
+    border-radius: 100px;
 }
 
 .profilebody{
     padding: 20px;
-    padding-top: 0;
-    border: 1px solid black;
     height: auto;
+    width: 100%;
 }
 
 .profilebody h1{
     color: rgb(57, 56, 56);
 }
  
-.profilebody .bio{
+.profilename .bio{
     color: rgb(107, 107, 107);
     font-size:15px;
     font-weight: 600;
 }
 
 .profilebody p{
-    color: rgb(84, 83, 83);
+    color: rgb(108, 108, 108);
     font-size:18px;
     font-weight: 500;
     margin: 1px;
+}
+
+.profiledetail{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.detail{
+    padding: 10px;
+}
+
+.detail label{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(53, 53, 53);
+    font-weight: 700;
+    font-size: 18px;
+    padding-bottom: 5px;
+
 }
 
 .profileshow{
