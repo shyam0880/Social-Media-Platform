@@ -1,25 +1,57 @@
-/* NewsFeed.css */
 
+/* -------------------home page------------------ */
+.homepage{
+  display: grid;
+  grid-template-columns: 2fr 4fr 2.5fr;
+  overflow: hidden;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/* -------------------NewsFeed------------------ */
 .newsfeed-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 5px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 600px;
-    overflow: hidden;
-    margin-bottom: 5px;
-    border: 1px solid black;
-    overflow: auto;
-    
+  max-width: 800px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 620px;
+  width: 97%;
+  overflow: hidden;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
   }
-  
-  .newsfeed-container h1 {
+
+  .postuser .userimg img{
+    padding: 10px;
+  }
+
+
+  .postuser .userbody p{
+    top: 0;
+    text-align: left;
+    height: auto;
+  }
+
+  .post .content{
+    padding: 20px;
+  }
+
+
+  .feedhead h1{
+    margin: 5px;
     font-size: 2rem;
     margin-bottom: 20px;
     color: #333;
   }
+
+  .feedbody{
+    padding: 20px;
+    overflow: auto;
+  }
+  
 
   .post-list{
     list-style: none;
@@ -28,17 +60,19 @@
     height: 10%;
   }
   
-  .post {
-    list-style: none;
-    padding: 0;
-  }
+
   
   .post {
+    list-style: none;
     background-color: #fff;
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .postuser{
+    display: flex;
   }
   
   .post p {
@@ -98,24 +132,47 @@
   background-color: #e0a800;
 }
 
-.homepage{
-  display: grid;
-  grid-template-columns: 3fr 4fr 3fr;
-  overflow: hidden;
-  height: 100%;
-  width: auto;
-}
+
 
 /* -------------------user-list------------------ */
 .users-list {
+  margin: 10px;
+  padding: 10px;
   height: 600px;
-  width: 40%;
+  width: auto;
   box-shadow: rgba(23, 127, 230, 0.2) 0px 8px 24px;
   border: 1px solid black;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 5px;
-  overflow: auto;
+  overflow: hidden;
   
+}
+.users{
+  padding: 10px;
+  margin: 10px;
+  overflow: auto;
+}
 
+.userimg img{
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+}
+
+.eachuser{
+  list-style: none;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.userbody{
+  font-size: 22px;
+  text-align: center;
+  padding: 10px;
 }
