@@ -11,7 +11,7 @@ const Register = () => {
     lastName: '',
     role: '',
     gender: '',
-    profileURL: '',
+    profileURL: 'https://shorturl.at/1MpKy',
     bio: '',
     date: ''
   });
@@ -99,7 +99,7 @@ const Register = () => {
         <input
           type="text"
           name="profileURL"
-          value={user.profileURL}
+          // value={user.profileURL}
           onChange={handleChange}
         />
       </div>
