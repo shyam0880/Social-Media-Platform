@@ -25,6 +25,10 @@ const CreatePost = () => {
       author: { id: user.id } // Use the fixed user ID
     };
 
+    setTimeout(() => {
+      setMessage('');
+    }, 3000);
+
     try {
         const response = await axios.post('http://localhost:8080/api/post/createpost', post);
         setMessage('Post created successfully!');
@@ -38,18 +42,25 @@ const CreatePost = () => {
 
   return (
     <div className="create-post-container">
-      <h1>Create a New Post</h1>
       <form onSubmit={handleCreatePost} className="create-post-form">
         <div className="form-group">
-          <label htmlFor="content">Content</label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          ></textarea>
+          <div className="post-create">
+            <div className='userimg'>
+              <img src={user.profileURL} alt={user.fullName} />
+            </div>
+            <div className='area'>
+              <textarea
+                id="content"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+              ></textarea>    
+            </div>
+          </div>
         </div>
-        <button type="submit" className="create-post-button">Create Post</button>
+        <div className='postsubmit'>
+          <button type="submit" className="create-post-button">Create Post</button>
+        </div>
       </form>
       {message && <p className="message">{message}</p>}
     </div>

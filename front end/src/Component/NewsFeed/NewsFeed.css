@@ -39,6 +39,10 @@
     padding: 20px;
   }
 
+  .createpost{
+    margin: 10px;
+    width: auto;
+  }
 
   .feedhead h1{
     margin: 5px;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import './NewsFeed.css';
 import { UserContext } from '../../UserContext';
 import Login from '../Auther/Login';
+import CreatePost from '../Posts/CreatePost';
 
 
 const NewsFeed = () => {
@@ -57,6 +58,9 @@ const NewsFeed = () => {
         <h1>Recent</h1>
       </div>
       <div className="newsfeed-container">
+        <div className='createpost'>
+          <CreatePost />
+        </div>
         <div className='feedhead'>
           <h1>News Feed</h1>
         </div>
@@ -111,7 +115,6 @@ const NewsFeed = () => {
                 </li>
               ))}
             </ul>
-
         </div>
       </div>
     </div>

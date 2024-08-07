@@ -1,43 +1,46 @@
 /* Container */
 .create-post-container {
   background-color: #fff;
-  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 600px;
   box-sizing: border-box;
 }
 
-/* Heading */
-.create-post-container h1 {
-  margin-bottom: 20px;
+.post-create{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.post-create .area{
+  width: 100%;
+}
+
+.post-create .area textarea{
+  margin: 0 10px;
+  padding-top: 8px;
+  padding-left: 8px;
+  width: 97%;
+  height: 40px;
+  border-radius: 100px;
+  font-family: Arial, sans-serif;
+  font-size: larger;
   text-align: center;
 }
 
+
+
 /* Form */
-.create-post-form .form-group {
-  margin-bottom: 20px;
+.form-group{
+  padding: 0;
+  margin: 0;
 }
 
-.create-post-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.create-post-form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 16px;
-  resize: vertical;
-}
 
 .create-post-button {
-  width: 100%;
+  width: 97%;
+  margin: 5px 10px;
   padding: 10px;
   background-color: #007bff;
   color: white;
@@ -54,7 +57,7 @@
 
 /* Message */
 .message {
-  margin-top: 20px;
+  margin: 10px;
   text-align: center;
   color: green;
 }
@@ -64,7 +67,7 @@
 }
 
 /* Responsive design */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .create-post-container {
     padding: 15px;
   }
@@ -74,4 +77,4 @@
     padding: 8px;
     font-size: 14px;
   }
-}
+} */
