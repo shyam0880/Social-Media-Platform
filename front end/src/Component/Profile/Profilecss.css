@@ -16,20 +16,20 @@
     display: flex;
     width: 50rem;
     height: 20rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .profileimg{
     padding: 20px;
     border-radius: 10px;
-    width: auto;
-    height: auto;
+    width: 200px;
+    height: 200px;
 }
 
 .profileimg img{
     width: 200px;
     height: 200px;
     border-radius: 100px;
+    border: 1px solid black;
 }
 
 .profilebody{
