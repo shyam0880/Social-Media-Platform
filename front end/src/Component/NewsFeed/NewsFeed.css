@@ -12,14 +12,12 @@
 .newsfeed-container {
   max-width: 800px;
   margin: 10px;
-  background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   height: 620px;
   width: 97%;
   overflow: hidden;
   margin-bottom: 5px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   }
@@ -54,7 +52,24 @@
   .feedbody{
     padding: 20px;
     overflow: auto;
+    margin-bottom: 10px;
   }
+
+  
+.feedbody::-webkit-scrollbar{
+	width: 0.3rem;
+	height:0.1rem;
+}
+
+.feedbody::-webkit-scrollbar-thumb{
+	border-radius: .8rem;
+	background-color: #0004;
+	visibility: hidden;
+}
+
+.feedbody::-webkit-scrollbar-thumb{
+	visibility: visible;
+}
   
 
   .post-list{
@@ -144,18 +159,35 @@
   padding: 10px;
   height: 600px;
   width: auto;
-  box-shadow: rgba(23, 127, 230, 0.2) 0px 8px 24px;
-  border: 1px solid black;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 5px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   
 }
+
 .users{
   padding: 10px;
   margin: 10px;
   overflow: auto;
+}
+
+/* overflow style */
+.users::-webkit-scrollbar{
+	width: 0.3rem;
+	height:0.1rem;
+}
+
+.users::-webkit-scrollbar-thumb{
+	border-radius: .8rem;
+	background-color: #0004;
+	visibility: hidden;
+}
+
+.users::-webkit-scrollbar-thumb{
+	visibility: visible;
 }
 
 .userimg img{
