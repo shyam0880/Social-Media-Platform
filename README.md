@@ -31,3 +31,6 @@
     │   └── UserServiceImpl.java
     └── SocialMediaApplication.java
 </pre>
+
+### Registration feature:
+    o  If profileUrl (profile image) not provide then it use default image
