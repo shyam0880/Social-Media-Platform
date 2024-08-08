@@ -19,12 +19,6 @@ function Navigation() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/create-post">Create Post</Link>
-          </li>
-          <li>
-            <Link to="/posts">Post List</Link>
-          </li>
-          <li>
             <Link to="/profile">Profile</Link>
           </li>
           <li>
