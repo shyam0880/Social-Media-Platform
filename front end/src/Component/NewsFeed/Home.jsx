@@ -5,7 +5,7 @@ import { UserContext } from '../../UserContext';
 import CreatePost from '../Posts/CreatePost';
 import { useNavigate } from 'react-router-dom';
 import NewsFeed from './NewsFeed';
-import PostLists from '../Posts/PostLists';
+import PostLists from '../Posts/UserList';
 
 
 const Home = () => {
