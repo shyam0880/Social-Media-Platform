@@ -1,23 +1,27 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Login from './Component/Auther/Login';
 import Register from './Component/Auther/Register';
 import Navigation from './Navigation';
-import NewsFeed from './Component/NewsFeed/NewsFeed';
+import NewsFeed from './Component/NewsFeed/Home';
 import Profile from './Component/Profile/Profile';
 import CreatePost from './Component/Posts/CreatePost';
-import { UserProvider } from './UserContext';
+import { UserContext } from './UserContext';
+
 
 function App() {
+  const { user } = useContext(UserContext);
+  
   return (
-    <UserProvider>
       <Router>
         <div className="App">
-          <div className='nav'>
-            <Navigation />
-          </div>
+        {user && (
+            <div className='nav'>
+              <Navigation />
+            </div>
+        )}
           <div className='container'>
             <Routes>
               <Route path="/login" element={<Login />} />
@@ -30,7 +34,6 @@ function App() {
           </div>
         </div>
       </Router>
-    </UserProvider>
   );
 }
 
