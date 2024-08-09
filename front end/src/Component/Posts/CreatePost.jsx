@@ -3,7 +3,7 @@ import axios from 'axios';
 import { UserContext } from '../../UserContext'; // Adjust the path as needed
 import './CreatePost.css'; // Import the CSS file for styling
 
-const CreatePost = () => {
+const CreatePost = ({refpost}) => {
   const [content, setContent] = useState('');
   const [message, setMessage] = useState('');
   const { user } = useContext(UserContext); // Access the current user from context
@@ -20,19 +20,21 @@ const CreatePost = () => {
 
     const post = {
       content,
-      createDate: new Date().toISOString(), // Current date in ISO format
-      //author: user.id // Assuming `user.id` is the ID of the current user
+      createDate: new Date().toISOString(), 
       author: { id: user.id } // Use the fixed user ID
     };
+
 
     setTimeout(() => {
       setMessage('');
     }, 3000);
 
+
     try {
         const response = await axios.post('http://localhost:8080/api/post/createpost', post);
         setMessage('Post created successfully!');
         setContent('');
+        refpost();
         console.log(response.data); // Handle the response data if needed
       } catch (error) {
         setMessage('Failed to create post.');
