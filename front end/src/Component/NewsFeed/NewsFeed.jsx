@@ -1,6 +1,8 @@
-import React from 'react'
+import React,{ useContext} from 'react'
+import { UserContext } from '../../UserContext';
 
-const NewsFeed = ({posts , users})=> {
+const NewsFeed = ()=> {
+  const {  users, posts } = useContext(UserContext);
 
     const finduser=(userid)=>{
         const user = users.find(user => user.id === userid);

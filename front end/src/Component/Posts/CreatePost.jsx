@@ -3,10 +3,10 @@ import axios from 'axios';
 import { UserContext } from '../../UserContext'; // Adjust the path as needed
 import './CreatePost.css'; // Import the CSS file for styling
 
-const CreatePost = ({refpost}) => {
+const CreatePost = () => {
   const [content, setContent] = useState('');
   const [message, setMessage] = useState('');
-  const { user } = useContext(UserContext); // Access the current user from context
+  const { user, fetchPosts } = useContext(UserContext); // Access the current user from context
   //const user = { id: 1 }; //temperory only access if user id present
 
   const handleCreatePost = async (e) => {
@@ -34,7 +34,7 @@ const CreatePost = ({refpost}) => {
         const response = await axios.post('http://localhost:8080/api/post/createpost', post);
         setMessage('Post created successfully!');
         setContent('');
-        refpost();
+        fetchPosts();
         console.log(response.data); // Handle the response data if needed
       } catch (error) {
         setMessage('Failed to create post.');

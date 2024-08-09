@@ -2,8 +2,8 @@ import React, { useContext} from 'react'
 
 import { UserContext } from '../../UserContext';
 
-const UserLists=({users})=> {
-  const { user } = useContext(UserContext);
+const UserLists=()=> {
+  const { user, users } = useContext(UserContext);
 
   return (
     <ul>
