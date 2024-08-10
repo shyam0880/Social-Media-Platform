@@ -115,8 +115,11 @@
   }
   
   
-.post .buttons {
+.buttons {
   margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .post button {
@@ -136,12 +139,13 @@
 }
 
 .post button.comment {
-  background-color: #28a745;
+  background-color: #007BFF;
 }
 
 .post button.comment:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }
+
 
 .post button.share {
   background-color: #ffc107;

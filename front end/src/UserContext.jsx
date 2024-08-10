@@ -39,6 +39,7 @@ const UserProvider = ({ children }) => {
     }
   };
 
+
   //helps to check while loading whether localstorage have data if trye then set on user
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'));

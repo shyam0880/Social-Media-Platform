@@ -31,11 +31,10 @@ const CreatePost = () => {
 
 
     try {
-        const response = await axios.post('http://localhost:8080/api/post/createpost', post);
+        await axios.post('http://localhost:8080/api/post/createpost', post);
         setMessage('Post created successfully!');
         setContent('');
         fetchPosts();
-        console.log(response.data); // Handle the response data if needed
       } catch (error) {
         setMessage('Failed to create post.');
         console.error(error); // Log the error for debugging
