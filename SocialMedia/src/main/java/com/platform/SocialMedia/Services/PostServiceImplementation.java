@@ -1,9 +1,11 @@
 package com.platform.SocialMedia.Services;
 
+import com.platform.SocialMedia.Entity.Comment;
 import com.platform.SocialMedia.Entity.Post;
 import com.platform.SocialMedia.Entity.User;
 import com.platform.SocialMedia.Repository.PostRepository;
 import com.platform.SocialMedia.Repository.UserRepository;
+import com.platform.SocialMedia.dto.CommentDTO;
 import com.platform.SocialMedia.dto.PostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +67,18 @@ public class PostServiceImplementation implements PostService{
         postDTO.setCreateDate(post.getCreateDate());
         postDTO.setAuthorId(post.getAuthor().getId());
         postDTO.setFullName(post.getAuthor().getFirstName()+" "+post.getAuthor().getLastName());
+        postDTO.setComment(post.getComments().stream().map(this::convertToDTO).collect(Collectors.toList()));
         return postDTO;
+    }
+
+    private CommentDTO convertToDTO(Comment comment){
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setId(comment.getId());
+        commentDTO.setContent(comment.getContent());
+        commentDTO.setPostId(comment.getPost().getId());
+        commentDTO.setAuthorId(comment.getPost().getId());
+        return commentDTO;
+
     }
 
 }

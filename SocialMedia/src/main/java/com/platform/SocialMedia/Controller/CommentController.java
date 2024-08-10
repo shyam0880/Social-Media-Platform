@@ -2,6 +2,7 @@ package com.platform.SocialMedia.Controller;
 
 import com.platform.SocialMedia.Entity.Comment;
 import com.platform.SocialMedia.Services.CommentService;
+import com.platform.SocialMedia.dto.CommentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @PostMapping
+    @PostMapping("/createcomment")
     public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
         Comment createdComment = commentService.createComment(comment);
         return ResponseEntity.ok(createdComment);
@@ -28,8 +29,8 @@ public class CommentController {
     }
 
     @GetMapping("/post/{postId}")
-    public ResponseEntity<List<Comment>> getCommentsByPost(@PathVariable Long postId) {
-        List<Comment> comments = commentService.getCommentsByPost(postId);
+    public ResponseEntity<List<CommentDTO>> getCommentsByPost(@PathVariable Long postId) {
+        List<CommentDTO> comments = commentService.getCommentsByPostDTO(postId);
         return ResponseEntity.ok(comments);
     }
 }

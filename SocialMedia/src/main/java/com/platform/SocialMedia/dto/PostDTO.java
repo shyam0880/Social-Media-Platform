@@ -1,5 +1,6 @@
 package com.platform.SocialMedia.dto;
 
+import com.platform.SocialMedia.Entity.Comment;
 import com.platform.SocialMedia.Entity.User;
 import lombok.*;
 
@@ -17,6 +18,6 @@ public class PostDTO {
     private Date createDate;
     private Long authorId;
     private String fullName;
-    private List<Long> commentIds;
+    private List<CommentDTO> comment;
     private List<Long> likeIds;
 }
