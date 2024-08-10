@@ -1,8 +1,28 @@
-import React,{ useContext} from 'react'
+import React,{ useContext, useState} from 'react'
 import { UserContext } from '../../UserContext';
+import Comment from '../Comments/Comment';
+import axios from 'axios';
 
 const NewsFeed = ()=> {
   const {  users, posts } = useContext(UserContext);
+  const [comments, setComments] = useState({});
+  const [visible, setVisible] = useState(null);
+
+  const fetchComment = async (postid) => {
+    if(visible===postid){
+      setVisible(null);
+    }
+    else{
+      try {
+        const response = await axios.get(`http://localhost:8080/api/comments/post/${postid}`);
+        setComments(prevComments => ({ ...prevComments, [postid]: response.data }));
+        setVisible(postid);
+      } catch (error) {
+        console.error(error);
+      }
+
+    }
+  }
 
     const finduser=(userid)=>{
         const user = users.find(user => user.id === userid);
@@ -30,9 +50,31 @@ const NewsFeed = ()=> {
                     <p>{post.content}</p>
                   </div>
                   <div className="buttons">
-                    <button>Like</button>
-                    <button className="comment">Comment</button>
-                    <button className="share">Share</button>
+                    <div>
+                      <button>Like</button>
+                    </div>
+                    <div>
+                      <button className="comment"
+                      onClick={() => fetchComment(post.id)}
+                      >{visible === post.id ? 'Hide Comments' : 'Show Comments'}</button>
+                    </div>
+                    <div className='commentList'>
+                    {comments[post.id] && visible === post.id && ( // Conditionally render comments if they exist
+                    <ul>
+                      {comments[post.id].map(comment => (
+                        <li key={comment.id}>
+                          <p>{comment.content}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                    </div>
+                  <div>
+                      <button className="share">Share</button>
+                    </div>
+                  </div>
+                  <div>
+                    <Comment postid={post.id}/>
                   </div>
                 </li>
               ))}
