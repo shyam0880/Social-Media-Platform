@@ -47,7 +47,7 @@ public class CommentServiceImplementation implements CommentService{
         commentDTO.setId(comment.getId());
         commentDTO.setContent(comment.getContent());
         commentDTO.setPostId(comment.getPost().getId());
-        commentDTO.setAuthorId(comment.getPost().getId());
+        commentDTO.setAuthorId(comment.getAuthor().getId());
         return commentDTO;
 
     }

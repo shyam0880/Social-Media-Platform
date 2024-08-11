@@ -56,22 +56,30 @@ const NewsFeed = ()=> {
                     <div>
                       <button className="comment"
                       onClick={() => fetchComment(post.id)}
-                      >{visible === post.id ? 'Hide Comments' : 'Show Comments'}</button>
+                      >{visible === post.id ? 'Hide Comments' : 'Show Comments'}
+                      </button>
                     </div>
-                    <div className='commentList'>
-                    {comments[post.id] && visible === post.id && ( // Conditionally render comments if they exist
-                    <ul>
-                      {comments[post.id].map(comment => (
-                        <li key={comment.id}>
-                          <p>{comment.content}</p>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                    </div>
-                  <div>
+                    <div>
                       <button className="share">Share</button>
                     </div>
+                  </div>
+                  <div className='commentList'>
+                    {comments[post.id] && visible === post.id && ( // Conditionally render comments if they exist
+                      <ul>
+                        {comments[post.id].map(comment => (
+                          <li key={comment.id}>
+                            <div className='eachcomment'>
+                              <div className='userimg'>
+                                <img src={finduser(comment.authorId)} alt={users.fullName} />
+                              </div>
+                              <div>
+                                <p>{comment.content}</p>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                        )}
                   </div>
                   <div>
                     <Comment postid={post.id}/>

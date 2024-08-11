@@ -14,8 +14,16 @@ const Comment =({postid})=> {
   const handleCreateComment = async(e) =>{
     e.preventDefault();
 
+    if (!content || content.trim() === '') {
+      setMessage('Comment cannot be empty.');
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
+      return;
+    }
+
     const comment = {
-      content,
+      content : content.trim(),
       createDate: new Date().toISOString(),
       author: { id: user.id },
       post: {id : postid}
@@ -42,7 +50,10 @@ const Comment =({postid})=> {
         <div className="comment">
           <input type="text"
           value={content}
-          onChange={(e)=>setContent(e.target.value)} />
+          onChange={(e)=>setContent(e.target.value)} 
+          placeholder="Write a comment"
+          required
+          />
           <input type="button"
           value="Comment"
           onClick={handleCreateComment} />
