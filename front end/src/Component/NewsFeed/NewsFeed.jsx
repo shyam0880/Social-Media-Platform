@@ -56,7 +56,7 @@ const NewsFeed = ()=> {
                     <div>
                       <button className="comment"
                       onClick={() => fetchComment(post.id)}
-                      >{visible === post.id ? 'Hide Comments' : 'Show Comments'}
+                      >{visible === post.id ? 'Hide Comments' : 'Show Comments'}{"  ( "+post.comment.length+" )"}
                       </button>
                     </div>
                     <div>
