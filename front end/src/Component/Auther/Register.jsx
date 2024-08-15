@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import './Registercss.css';
+
 const Register = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -39,90 +41,119 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={user.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={user.password}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
+    <div className='registerpage'>
+      <form class="register-form" onSubmit={handleRegister}>
+    <h2>Register</h2>
+    <div className='row'>
+      <div class="form-group">
         <label>First Name</label>
         <input
           type="text"
           name="firstName"
           value={user.firstName}
           onChange={handleChange}
+          placeholder="Enter your first name"
+          required
         />
       </div>
-      <div>
+      <div class="form-group">
         <label>Last Name</label>
         <input
           type="text"
           name="lastName"
           value={user.lastName}
           onChange={handleChange}
+          placeholder="Enter your last name"
+          required
         />
       </div>
-      <div>
-        <label>Role</label>
+    </div>
+    <div className='row'>
+      <div class="form-group">
+        <label>Email</label>
         <input
-          type="text"
-          name="role"
-          value={user.role}
+          type="email"
+          name="email"
+          value={user.email}
           onChange={handleChange}
+          placeholder="Enter your email"
+          required
         />
       </div>
-      <div>
-        <label>Gender</label>
+      <div class="form-group">
+        <label>Password</label>
         <input
-          type="text"
-          name="gender"
-          value={user.gender}
+          type="password"
+          name="password"
+          value={user.password}
           onChange={handleChange}
+          placeholder="Enter your password"
+          required
         />
       </div>
-      <div>
-        <label>Profile URL</label>
-        <input
-          type="text"
-          name="profileURL"
-          // value={user.profileURL}
-          onChange={handleChange}
-        />
+    </div>
+    
+    <div class="form-group">
+      <label>Gender</label>
+      <div className='row'>
+        <div className='radiobtn'>
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            onChange={handleChange}
+            checked={user.gender === "male"}
+            required
+          />
+          Male
+        </div>
+        <div className='radiobtn'>
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            onChange={handleChange}
+            checked={user.gender === "female"}
+            required
+          />
+          Female
+        </div>
+        <div className='radiobtn'>
+          <input
+            type="radio"
+            name="gender"
+            value="prefer-not-to-say"
+            onChange={handleChange}
+            checked={user.gender === "prefer-not-to-say"}
+            required
+          />
+          Prefer not to say
+        </div>
       </div>
-      <div>
-        <label>Bio</label>
-        <textarea
-          name="bio"
-          value={user.bio}
-          onChange={handleChange}
-        />
+    </div>
+    
+    <div class="form-group">
+      <label>Date</label>
+      <input
+        type="date"
+        name="date"
+        value={user.date}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <button class="register-button" type="submit">Register</button>
+    <div class="login-link">
+      <br/>
+      <hr/>
+      <br/>
+      <div className='changebutton'>
+        <Link to="/login" className='login-button'>Login</Link>
       </div>
-      <div>
-        <label>Date</label>
-        <input
-          type="date"
-          name="date"
-          value={user.date}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit">Register</button>
-      <label>Existing user : </label>  <Link to="/login">Login</Link>
-    </form>
+    </div>
+      </form>
+    </div>
+
   );
 };
 
