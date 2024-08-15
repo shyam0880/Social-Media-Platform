@@ -30,27 +30,44 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <div>
-        <label>Username (Email)</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">Login</button>
-      <br/>
-      <label>New user : </label>  <Link to="/register">Register</Link>
-    </form>
+    <div className='loginpage'>
+      <form onSubmit={handleLogin} className='login-form'>
+        <div className='userlogo'>
+            <img src='https://shorturl.at/1MpKy'typeof='img' alt={`USER`} />
+        </div>
+        <div className='loginbox'>
+          <div>
+            {/* <label>Username (Email)</label> */}
+            <input
+              type="email"
+              value={email}
+              placeholder='Enter your email'
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <br/>
+          <div>
+            {/* <label>Password</label> */}
+            <input
+              type="password"
+              value={password}
+              placeholder='Enter your password'
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <br/>
+          <button type="submit">Login</button>
+          <br/><br/>
+          <hr/>
+          <br/>
+          <div className='changebutton'>
+            <Link to="/register" className='login-button'>Register</Link>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 
