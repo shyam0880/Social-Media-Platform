@@ -1,8 +1,12 @@
 package com.platform.SocialMedia.Services;
 
+import com.platform.SocialMedia.Entity.Comment;
+import com.platform.SocialMedia.Entity.Post;
 import com.platform.SocialMedia.Entity.User;
 import com.platform.SocialMedia.Repository.PostRepository;
 import com.platform.SocialMedia.Repository.UserRepository;
+import com.platform.SocialMedia.dto.CommentDTO;
+import com.platform.SocialMedia.dto.PostDTO;
 import com.platform.SocialMedia.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +39,7 @@ public class UserServiceImplementation implements UserService{
     @Override
     public UserDTO getUsersById(Long id) {
         User user = userRepository.findById(id).orElseThrow(RuntimeException::new);
-        return convertToTDO(user);
+        return convertToDTO(user);
         //return userRepository.findById(id).orElseThrow(RuntimeException::new);
         //return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
@@ -48,7 +52,7 @@ public class UserServiceImplementation implements UserService{
     @Override
     public List<UserDTO> findAllUsers() {
         List<User> user = userRepository.findAll();
-        return user.stream().map(this::convertToTDO).collect(Collectors.toList());
+        return user.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -72,11 +76,11 @@ public class UserServiceImplementation implements UserService{
     @Override
     public UserDTO findsByEmail(String email) {
         User user =  userRepository.findByEmail(email);
-        return convertToTDO(user);
+        return convertToDTO(user);
     }
 
 
-    private UserDTO convertToTDO(User user){
+    private UserDTO convertToDTO(User user){
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
@@ -87,7 +91,28 @@ public class UserServiceImplementation implements UserService{
         userDTO.setProfileURL(user.getProfileURL());
         userDTO.setBio(user.getBio());
         userDTO.setDate(user.getDate());
-        //userDTO.setPostsId(user.getPosts());
+        userDTO.setPosts(user.getPosts().stream().map(this::convertToDTO).collect(Collectors.toList()));
         return userDTO;
+    }
+
+    private PostDTO convertToDTO(Post post){
+        PostDTO postDTO = new PostDTO();
+        postDTO.setId(post.getId());
+        postDTO.setContent(post.getContent());
+        postDTO.setCreateDate(post.getCreateDate());
+        postDTO.setAuthorId(post.getAuthor().getId());
+        postDTO.setFullName(post.getAuthor().getFirstName()+" "+post.getAuthor().getLastName());
+        postDTO.setComment(post.getComments().stream().map(this::convertToDTO).collect(Collectors.toList()));
+        return postDTO;
+    }
+
+    private CommentDTO convertToDTO(Comment comment){
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setId(comment.getId());
+        commentDTO.setContent(comment.getContent());
+        commentDTO.setPostId(comment.getPost().getId());
+        commentDTO.setAuthorId(comment.getAuthor().getId());
+        return commentDTO;
+
     }
 }
