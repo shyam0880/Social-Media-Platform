@@ -7,6 +7,7 @@ import './logincss.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const { login } = useContext(UserContext);
 
@@ -24,8 +25,12 @@ const Login = () => {
       }
 
     } catch (error) {
-      console.error('Login failed', error);
-      alert('An error occurred during login. Please try again.'); // Display generic error message
+      if(error.response && error.response.data){
+        setMessage(error.response.data);
+      }
+      else{
+        setMessage('Login failed. Please try again.');
+      }
     }
   };
 
@@ -59,7 +64,9 @@ const Login = () => {
           </div>
           <br/>
           <button type="submit">Login</button>
-          <br/><br/>
+          <br/>
+          {message && <p style={{color:"red"}}>{message}</p>}
+          <br/>
           <hr/>
           <br/>
           <div className='changebutton'>

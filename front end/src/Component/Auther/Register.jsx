@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -6,6 +6,8 @@ import './Registercss.css';
 
 const Register = () => {
   const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -13,10 +15,23 @@ const Register = () => {
     lastName: '',
     role: '',
     gender: '',
-    profileURL: 'https://shorturl.at/1MpKy',
+    profileURL: '',
     bio: '',
     date: ''
   });
+  
+  useEffect(() => {
+    const profileURLs = {
+      male: 'https://shorturl.at/1MpKy',
+      female: 'https://shorturl.at/w7OzW',
+      'prefer-not-to-say': 'https://shorturl.at/GL47y'
+    };
+
+    setUser(prevState => ({
+      ...prevState,
+      profileURL: profileURLs[user.gender] || 'https://shorturl.at/GL47y' // Default URL
+    }));
+  }, [user.gender]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,19 +39,38 @@ const Register = () => {
       ...user,
       [name]: value
     });
+
+    if (name === 'password') {
+      const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+      if(value===""){
+        setPasswordMessage('');
+      } else if (!passwordPattern.test(value)) {
+        setPasswordMessage(
+          'Minimum 6 char, one uppercase, lowercase, digit, and special character.'
+        );
+      } else{
+        setPasswordMessage('Password is correct!');
+      }
+    }
+    
   };
+
 
   const handleRegister = async (e) => {
 
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/users/register', user);
-      alert(response.data.firstName+' is register successcuffy')
-      //window.location.reload();
-      // Handle registration success (e.g., redirect to login)
-      navigate('/login')
+      setMessage(response.data)
+      if(response.status===201){
+        navigate('/login')
+      }
     } catch (error) {
-      alert('Registration failed', error);
+      if(error.response && error.response.data){
+        setMessage(error.response.data)
+      } else {
+        setMessage('Registration failed. Please try again.');
+      }
     }
   };
 
@@ -90,6 +124,7 @@ const Register = () => {
           placeholder="Enter your password"
           required
         />
+        {passwordMessage && (<p style={{ color: passwordMessage === 'Password is correct!' ? 'green' : 'red' }}>{passwordMessage}</p>)}
       </div>
     </div>
     
@@ -97,37 +132,43 @@ const Register = () => {
       <label>Gender</label>
       <div className='row'>
         <div className='radiobtn'>
-          <input
-            type="radio"
-            name="gender"
-            value="male"
-            onChange={handleChange}
-            checked={user.gender === "male"}
-            required
-          />
-          Male
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              onChange={handleChange}
+              checked={user.gender === "male"}
+              required
+            />
+            Male
+          </label>
         </div>
         <div className='radiobtn'>
-          <input
-            type="radio"
-            name="gender"
-            value="female"
-            onChange={handleChange}
-            checked={user.gender === "female"}
-            required
-          />
-          Female
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              onChange={handleChange}
+              checked={user.gender === "female"}
+              required
+            />
+            Female
+          </label>
         </div>
         <div className='radiobtn'>
-          <input
-            type="radio"
-            name="gender"
-            value="prefer-not-to-say"
-            onChange={handleChange}
-            checked={user.gender === "prefer-not-to-say"}
-            required
-          />
-          Prefer not to say
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="prefer-not-to-say"
+              onChange={handleChange}
+              checked={user.gender === "prefer-not-to-say"}
+              required
+            />
+            Prefer not to say
+          </label>
         </div>
       </div>
     </div>
@@ -145,6 +186,7 @@ const Register = () => {
     <button class="register-button" type="submit">Register</button>
     <div class="login-link">
       <br/>
+      {message && <p style={{color:"red"}}>{message}</p>}
       <hr/>
       <br/>
       <div className='changebutton'>

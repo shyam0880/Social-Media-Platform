@@ -32,6 +32,7 @@
   
   .row .form-group {
       margin-bottom: 15px;
+      width: 100%;
   }
   
   .form-group label {
@@ -49,6 +50,11 @@
     font-size: 14px;
     box-sizing: border-box;
   }
+
+  .form-group input[type="text"]{
+    width: 100%;
+    margin: 5px;
+  }
   
   .form-group input:focus,
   .form-group textarea:focus {
@@ -58,7 +64,7 @@
   
  
 
-  .radiobtn {
+  /* .radiobtn {
     width: 100%;
     align-items: center;
     text-align: center;
@@ -67,7 +73,28 @@
     flex-direction: row;
     margin: 5px;
     padding: 10px;
+  } */
+
+  .radiobtn {
+    margin-bottom: 10px;
   }
+  
+  .radiobtn label {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+  }
+  
+  .radiobtn input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and label text */
+  }
+  
+  
+  
   
   .register-button {
     width: 100%;
