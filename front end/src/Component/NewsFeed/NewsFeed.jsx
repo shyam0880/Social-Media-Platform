@@ -1,29 +1,39 @@
 import React,{ useContext, useState} from 'react'
 import { UserContext } from '../../UserContext';
 import Comment from '../Comments/Comment';
-import axios from 'axios';
+//import axios from 'axios';
 
 const NewsFeed = ()=> {
   const {  users, posts } = useContext(UserContext);
-  const [comments, setComments] = useState({});
+//  const [comments, setComments] = useState({});
   const [visible, setVisible] = useState(null);
+
+  // const fetchComment = async (postid) => {
+  //   if(visible===postid){
+  //     setVisible(null);
+  //   }
+  //   else{
+  //     try {
+  //       const response = await axios.get(`http://localhost:8080/api/comments/post/${postid}`);
+  //       setComments(prevComments => ({ ...prevComments, [postid]: response.data }));
+  //       setVisible(postid);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+
+  //   }
+  // }
+  
 
   const fetchComment = async (postid) => {
     if(visible===postid){
       setVisible(null);
     }
     else{
-      try {
-        const response = await axios.get(`http://localhost:8080/api/comments/post/${postid}`);
-        setComments(prevComments => ({ ...prevComments, [postid]: response.data }));
-        setVisible(postid);
-      } catch (error) {
-        console.error(error);
-      }
-
+      setVisible(postid);
     }
   }
-
+  
     const finduser=(userid)=>{
         const user = users.find(user => user.id === userid);
         return user.profileURL;
@@ -56,7 +66,9 @@ const NewsFeed = ()=> {
                     <div>
                       <button className="comment"
                       onClick={() => fetchComment(post.id)}
-                      >{visible === post.id ? 'Hide Comments' : 'Show Comments'}{"  ( "+post.comment.length+" )"}
+                      >
+                        {visible === post.id ? 'Hide Comments' : 'Show Comments'}{" ("+post.comment.length+")"}
+                        {/* {comments[post.id]?.length > 0 ? ` (${comments[post.id].length})` : ''} */}
                       </button>
                     </div>
                     <div>
@@ -64,9 +76,25 @@ const NewsFeed = ()=> {
                     </div>
                   </div>
                   <div className='commentList'>
-                    {comments[post.id] && visible === post.id && ( // Conditionally render comments if they exist
+                    {/* {comments[post.id] && visible === post.id && ( // Conditionally render comments if they exist
                       <ul>
                         {comments[post.id].map(comment => (
+                          <li key={comment.id}>
+                            <div className='eachcomment'>
+                              <div className='userimg'>
+                                <img src={finduser(comment.authorId)} alt={users.fullName} />
+                              </div>
+                              <div>
+                                <p>{comment.content}</p>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                        )} */}
+                        {post.id && visible === post.id && ( // Conditionally render comments if they exist
+                      <ul>
+                        {post.comment.map(comment => (
                           <li key={comment.id}>
                             <div className='eachcomment'>
                               <div className='userimg'>

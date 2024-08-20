@@ -10,6 +10,7 @@ const Comment =({postid})=> {
   const [content, setContent] = useState();
   const [message, setMessage] = useState('');
   const { user } = useContext(UserContext);
+  const { fetchPosts } = useContext(UserContext);
 
   const handleCreateComment = async(e) =>{
     e.preventDefault();
@@ -36,6 +37,7 @@ const Comment =({postid})=> {
     try{
       await axios.post('http://localhost:8080/api/comments/createcomment', comment);
       setMessage('comment created successfully!');
+      fetchPosts();
       setContent('');
     } catch(error){
       setMessage('Failed to create comment.');
