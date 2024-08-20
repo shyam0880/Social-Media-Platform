@@ -73,10 +73,16 @@ public class UserServiceImplementation implements UserService{
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
     @Override
     public UserDTO findsByEmail(String email) {
         User user =  userRepository.findByEmail(email);
         return convertToDTO(user);
+    }
+
+    @Override
+    public boolean emailExist(String Email){
+        return (userRepository.existsByEmail(Email));
     }
 
 

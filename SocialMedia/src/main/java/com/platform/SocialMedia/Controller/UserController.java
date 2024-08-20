@@ -4,6 +4,7 @@ import com.platform.SocialMedia.Entity.User;
 import com.platform.SocialMedia.Services.UserService;
 import com.platform.SocialMedia.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user){
-        User registeredUser = userService.registerUser(user);
-        return ResponseEntity.ok(registeredUser);
+    public ResponseEntity<?> registerUser(@RequestBody User user){
+        if(userService.emailExist(user.getEmail())){
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Email is already registered");
+        }else {
+            User registeredUser = userService.registerUser(user);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(registeredUser);
+        }
     }
 
     @PostMapping("/validate")
@@ -26,14 +33,21 @@ public class UserController {
         String email = user.getEmail();
         String password = user.getPassword();
 
-        if (userService.validateUser(email, password)) {
-            UserDTO users = userService.findsByEmail(email);
-            return ResponseEntity.ok(users);
-            //return ResponseEntity.status(200).body("Invalid credentials");
+        if(userService.emailExist(email)){
+            if (userService.validateUser(email, password)) {
+                UserDTO users = userService.findsByEmail(email);
+                return ResponseEntity.ok(users);
 
-        } else {
-            return ResponseEntity.status(401).body("Invalid credentials");
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Invalid credentials");
+            }
         }
+        else{
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Email doest not exist");
+        }
+
+
     }
 
 
