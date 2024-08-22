@@ -28,6 +28,29 @@ public class UserController {
         }
     }
 
+    @PostMapping("/updateuser")
+    public ResponseEntity<?> updateUser(@RequestBody User updateUser){
+        if(userService.validateUser(updateUser.getId())){
+            User dbUser = userService.getUserById(updateUser.getId());
+
+            dbUser.setProfileURL(updateUser.getProfileURL());
+            dbUser.setFirstName(updateUser.getFirstName());
+            dbUser.setLastName(updateUser.getLastName());
+            dbUser.setBio(updateUser.getBio());
+            dbUser.setEmail(updateUser.getEmail());
+            dbUser.setRole(updateUser.getRole());
+            dbUser.setGender(updateUser.getGender());
+            dbUser.setDate(updateUser.getDate());
+
+            userService.registerUser(dbUser);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body("Data updated Successfully");
+        }else {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("User not found");
+        }
+    }
+
     @PostMapping("/validate")
     public ResponseEntity<?> validateUser(@RequestBody User user) {
         String email = user.getEmail();

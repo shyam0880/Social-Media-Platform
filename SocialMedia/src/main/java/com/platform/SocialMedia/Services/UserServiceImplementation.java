@@ -70,6 +70,11 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
+    public boolean validateUser(Long id) {
+        return (userRepository.existsById(id));
+    }
+
+    @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

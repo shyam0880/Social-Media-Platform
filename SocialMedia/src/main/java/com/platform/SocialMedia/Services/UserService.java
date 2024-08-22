@@ -19,6 +19,8 @@ public interface UserService {
 
     boolean validateUser(String email, String password);
 
+    boolean validateUser(Long id);
+
     User findByEmail(String email);
 
     UserDTO findsByEmail(String email);
