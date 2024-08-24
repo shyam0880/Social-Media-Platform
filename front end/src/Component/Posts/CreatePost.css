@@ -27,6 +27,7 @@
   font-family: Arial, sans-serif;
   font-size: larger;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 
