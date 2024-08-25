@@ -73,13 +73,13 @@ const UserProvider = ({ children }) => {
 
   }, []);
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (e, email, password) => {
+    e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/users/validate', { email, password });
-      login(response.data);
-            
       // Check response status
       if (response.status === 200) {
+        login(response.data);
         navigate('/profile'); // Navigate to newsFeed if login is successful
       } else {
         alert('Login failed: ' + response.data); // Display error message
@@ -88,12 +88,13 @@ const UserProvider = ({ children }) => {
     } catch (error) {
       if(error.response && error.response.data){
         setLoginMessage(error.response.data);
-        setTimeout(setLoginMessage(''),2000)
       }
       else{
         setLoginMessage('Login failed. Please try again.');
-        setTimeout(setLoginMessage(''),2000)
       }
+    }
+    finally{
+      setTimeout(() => setLoginMessage(''), 2000);
     }
   };
 

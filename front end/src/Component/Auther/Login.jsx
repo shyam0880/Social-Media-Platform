@@ -33,10 +33,18 @@ const Login = () => {
   //     }
   //   }
   // };
+  const handlePWView=()=>{
+    const pwd = document.getElementById('pwd'); 
+    if(pwd.type === 'password'){
+      pwd.type = 'text';
+      } else{
+        pwd.type = 'password';
+      }
+  }
 
   return (
     <div className='loginpage'>
-      <form onSubmit={()=>{handleLogin(email, password)}} className='login-form'>
+      <form onSubmit={(e)=>{handleLogin(e,email, password)}} className='login-form'>
         <div className='userlogo'>
             <img src='https://shorturl.at/1MpKy'typeof='img' alt={`USER`} />
         </div>
@@ -57,11 +65,15 @@ const Login = () => {
             <input
               type="password"
               value={password}
+              id='pwd'
               placeholder='Enter your password'
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
+          <br/>
+          <input type="checkbox" id='chk' onClick={handlePWView}/>Show Password
+          <br/>
           <br/>
           <button type="submit">Login</button>
           <br/>
