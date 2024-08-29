@@ -12,12 +12,14 @@ body {
   overflow: hidden;
 }
 
+/* -----------------------nav -bar css------------- */
+
 .nav{
   top:0;
   position:sticky;
   background-color: #242526;
   width: 100%;
-  height: 40px;
+  height: 50px;
   border-bottom: 2px solid rgba(247, 240, 240, 0.844);
 }
 
@@ -35,6 +37,31 @@ body {
   text-decoration: none;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.navlogo img{
+  width: 40px;
+}
+
+.navbar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 2px;
+}
+
+.navitem{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navprofile img{
+  margin: 5px 10px 0 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+}
+
 
 
 

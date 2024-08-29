@@ -48,6 +48,15 @@
     font-weight: 600;
 }
 
+.profilename input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #7474fb;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
 .profilebody p{
     color: rgb(108, 108, 108);
     font-size:18px;

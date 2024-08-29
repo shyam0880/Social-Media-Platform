@@ -5,12 +5,12 @@ import './Profilecss.css';
 import axios from 'axios';
 
 const Profile = () => {
-  const { user: dbUser, users, handleLogin } = useContext(UserContext);
+  const { user: dbUser, users, handleLogin, logout } = useContext(UserContext);
   const { userId } = useParams();
   const navigate = useNavigate();
 
 
-  const user = userId ? users.find(user => user.id == userId) : dbUser;
+  const user = userId ? users.find(user => user.id === parseInt(userId)) : dbUser;
   
   const [message, setMessage] = useState('');
   const [update, setUpdate] = useState(true);
@@ -60,7 +60,8 @@ const Profile = () => {
       setMessage(response.data);
       setUpdate(!update);
       if (handleLogin) {
-        handleLogin(updateUser.email, updateUser.password); // Ensure updated credentials
+        handleLogin(e,updateUser.email, updateUser.password); // Ensure updated credentials
+        //(e)=>{handleLogin(e,updateUser.email, updateUser.password)}
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -68,6 +69,8 @@ const Profile = () => {
       } else {
         setMessage('Please try again.');
       }
+    }finally{
+      setTimeout(() => setMessage(''), 2000);
     }
   };
 
@@ -75,6 +78,11 @@ const Profile = () => {
     navigate('/login');
     return null;
   }
+
+  const Logout = () => {
+    logout();
+    navigate('/'); // Redirect to the homepage or login page
+  };
 
 
   const handleUpdateButton = () => setUpdate(!update);
@@ -138,6 +146,7 @@ const Profile = () => {
                       {isCurrentUserProfile? (
                         <>
                         <button type="button" onClick={handleUpdateButton}>Update</button>
+                        <button type="button" onClick={Logout}>Logout</button>
                         </>
                       ):(
                         <>

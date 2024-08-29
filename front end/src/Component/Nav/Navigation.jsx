@@ -1,30 +1,27 @@
 import React,{useContext} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 
 function Navigation() {
-  const { logout } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const Logout = () => {
-    logout();
-    navigate('/'); // Redirect to the homepage or login page
-  };
+  const { user } = useContext(UserContext);
 
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/" onClick={Logout}>LogOut</Link>
-          </li>
-        </ul>
+      <nav className='navbar'>
+        <div className='navlogo'>
+        <img src="https://shorturl.at/WTT2u" alt='logo' />
+        </div>
+        <div className='navitem'>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+        </div>
+        <div className='navprofile'>
+        
+        <Link to="/profile"><img src={user.profileURL} alt='logo' /></Link>
+        </div>
       </nav>
     </div>
   );
