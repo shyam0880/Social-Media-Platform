@@ -15,7 +15,7 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    void followUser(Long userId, User follower);
+    void followUser(Long userId, Long followId);
 
     boolean validateUser(String email, String password);
 

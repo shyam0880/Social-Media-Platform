@@ -24,6 +24,6 @@ public class UserDTO {
     private Date date;
     private List<PostDTO> posts;
 //    private List<UserDTO> followers;
-//    private List<UserDTO> following;
+    private List<UserDTO> following;
     //private List<Post> postsId;
 }

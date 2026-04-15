@@ -98,9 +98,9 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping("/{id}/follow")
-    public ResponseEntity<Void> followUser(@PathVariable Long id, @RequestBody User follower) {
-        userService.followUser(id, follower);
+    @PostMapping("/{userId}/follow/{followId}")
+    public ResponseEntity<Void> followUser(@PathVariable Long userId, @PathVariable Long followId) {
+        userService.followUser(userId, followId);
         return ResponseEntity.ok().build();
     }
 

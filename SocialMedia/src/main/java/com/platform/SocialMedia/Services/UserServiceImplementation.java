@@ -1,11 +1,13 @@
 package com.platform.SocialMedia.Services;
 
 import com.platform.SocialMedia.Entity.Comment;
+import com.platform.SocialMedia.Entity.Follow;
 import com.platform.SocialMedia.Entity.Post;
 import com.platform.SocialMedia.Entity.User;
 import com.platform.SocialMedia.Repository.PostRepository;
 import com.platform.SocialMedia.Repository.UserRepository;
 import com.platform.SocialMedia.dto.CommentDTO;
+import com.platform.SocialMedia.dto.FollowDTO;
 import com.platform.SocialMedia.dto.PostDTO;
 import com.platform.SocialMedia.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +58,11 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
-    public void followUser(Long userId, User follower) {
-        User user = getUserById(userId); // Retrieve the User object
-        user.getFollowers().add(follower); // Add the follower to the list
-        userRepository.save(user); // Save the updated User object
+    public void followUser(Long userId, Long followId) {
+        User user = getUserById(userId);
+        User follower = getUserById(userId);
+        user.getFollowers().add(follower);
+        userRepository.save(user);
     }
 
     @Override
@@ -104,6 +107,7 @@ public class UserServiceImplementation implements UserService{
         userDTO.setBio(user.getBio());
         userDTO.setDate(user.getDate());
         userDTO.setPosts(user.getPosts().stream().map(this::convertToDTO).collect(Collectors.toList()));
+        userDTO.setFollowing(user.getFollowing().stream().map(this::convertToDTO).collect(Collectors.toList()));
         return userDTO;
     }
 
@@ -126,5 +130,12 @@ public class UserServiceImplementation implements UserService{
         commentDTO.setAuthorId(comment.getAuthor().getId());
         return commentDTO;
 
+    }
+
+    private FollowDTO convertToDTO(Follow follow){
+        FollowDTO followDTO = new FollowDTO();
+        followDTO.setFollowerId(follow.getFollower().getId());
+        followDTO.setUserId(follow.getId());
+        return followDTO;
     }
 }
